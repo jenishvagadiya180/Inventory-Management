@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
-
+import { priceChangeLogModel } from "./index.js";
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -52,6 +52,21 @@ const productSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+productSchema.pre("save", async function (next) {
+  if (this.isModified("price")) {
+    const original = await this.constructor.findById(this._id).exec();
+    if (original && original?.price !== this.price) {
+      await priceChangeLogModel.create({
+        productId: this._id,
+        oldPrice: original?.price,
+        newPrice: this.price,
+        reason: "Price has updated by API",
+      });
+    }
+  }
+  next();
+});
 
 const productModel = mongoose.model("product", productSchema);
 

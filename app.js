@@ -1,8 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDatabase from "./config/connection.js";
-import errorhandler from "./error/handler.js";
-
+import { report } from "./routes/index.js";
+import { errorhandler } from "./error/index.js";
+import { product } from "./routes/index.js";
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
@@ -11,6 +12,8 @@ const port = process.env.PORT;
 connectDatabase();
 
 app.use(express.json());
+app.use("/reports", report);
+app.use("/products", product);
 app.use(errorhandler);
 
 app.listen(port, () => {

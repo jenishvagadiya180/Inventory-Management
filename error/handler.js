@@ -1,7 +1,7 @@
-import { services, statusCode, message } from "../helper";
+import { services, statusCode, message } from "../helper/index.js";
 const send = services.setResponse;
 
-const errorhandler = (error, req, res) => {
+const errorhandler = (error, req, res, next) => {
   console.log("error :>> ", error);
   let errorObj = {
     title: error.name,

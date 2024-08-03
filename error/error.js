@@ -1,4 +1,4 @@
-import { statusCode } from "../helper";
+import { statusCode } from "../helper/index.js";
 
 class RequestError extends Error {
   constructor(code, msg, data) {

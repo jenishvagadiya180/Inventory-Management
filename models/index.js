@@ -1,5 +1,6 @@
-import bookModel from "./book.js";
-import coverImageModel from "./coverImage.js";
 import userModel from "./user.js";
+import productModel from "./product.js";
+import categoryModel from "./category.js";
+import priceChangeLogModel from "./priceChangeLog.js";
 
-export { bookModel, coverImageModel, userModel };
+export { productModel, categoryModel, userModel, priceChangeLogModel };
