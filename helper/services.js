@@ -1,6 +1,5 @@
 import { validationResult } from "express-validator";
 import statusCode from "./httpStatusCode.js";
-import jwt from "jsonwebtoken";
 
 class services {
   static sendSuccess = async (res, message, payload) => {
@@ -62,8 +61,8 @@ class services {
       sortField && sortType == "asc"
         ? { [sortField]: 1 }
         : sortField && sortType == "desc"
-        ? { [sortField]: -1 }
-        : { [defaultSortField]: 1 };
+          ? { [sortField]: -1 }
+          : { [defaultSortField]: 1 };
     return {
       page,
       skipRecord: (page - 1) * limit,
