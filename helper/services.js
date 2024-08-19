@@ -2,7 +2,7 @@ import { validationResult } from "express-validator";
 import statusCode from "./httpStatusCode.js";
 
 
-console.log("hiii")
+console.log("hiii vagadiya jenish")
 class services {
   static sendSuccess = async (res, message, payload) => {
     return services.setResponse(res, statusCode.SUCCESSFUL, message, payload);
